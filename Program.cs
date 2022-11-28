@@ -43,11 +43,17 @@ string Print(int[] f)
   string output = String.Empty;
   for (int i = 0; i < f.Length; i++)
   {
+
+    int t = f[i];
     if (f[i] == 0) continue;
-    if (i == 1) { output += $"{f[i]}x"; }
-    if (i == 0) { output += $"{f[i]}"; }
-    if (i != 1 && i != 0 && f[i] != 0) { output += $"{f[i]}x{pows[i]}"; }
-    if (f[i] != 0 && i < f.Length - 1) output += " + ";
+    if (f[i] < 0) { output += " - "; }
+    else if (i != 0) { output += " + "; }
+
+    if (t < 0) t = -t;
+    if (i == 1) { output += $"{t}x"; }
+    if (i == 0) { output += $"{t}"; }
+    if (i != 1 && i != 0 && f[i] != 0) { output += $"{t}x{pows[i]}"; }
+    //if (flag && f[i] != 0 && i < f.Length - 1) output += " + ";
   }
 
   return output;
@@ -56,11 +62,11 @@ string Print(int[] f)
 
 //          0  1  2  3  4  5  6  7  ......... N
 
-int[] f = { 1, 0, 0, 0, 9, 6 };
+int[] f = { 1, 0, 0, 0, -9, -6 };
 //          1* x^0 + 2*x^1 + 0*x^2 + 4*x^3 + 5*x^4 + 6*x^5
 // 
 
-int[] g = { 0, 1, 2, 5, 0, 0, 7, 3 };
+int[] g = { 0, 1, -2, -5, 0, 0, 7, 3 };
 Console.WriteLine(Print(f));
 Console.WriteLine(Print(g));
 int[] s = Sum(f, g);
