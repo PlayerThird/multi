@@ -1,12 +1,6 @@
 ﻿// Задача: 
 // Написать программу сложения и вычитания двух многочленов
-// f(x) = 4*x^3 + 3*x^2 + x + 11
-// g(x) = 10*x^3 + x + 10
-// f(x) + g(x) =  14*x^3 + 3*x^2 + 2*x^1 + 21
-// f(x) - g(x) =  -6*x^3 + 3*x^2 + 1
-//          0  1  2  3  4  5          
-int[] x = { 1, 2, 0, 4, 5, 16 };
-int[] y = { 0, 1, 2, 5, 0, 0, 11, 23 };
+
 
 
 
@@ -43,7 +37,36 @@ int[] Sum(int[] f, int[] g)
   return result;
 }
 
-int[] s = Sum(x, y);
-for (int i = 0; i < s.Length; i++) Console.Write($"{s[i]} ");
+string Print(int[] f)
+{
+  string[] pows = { "⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹" };
+  string output = String.Empty;
+  for (int i = 0; i < f.Length; i++)
+  {
+    if (f[i] == 0) continue;
+    if (i == 1) { output += $"{f[i]}x"; }
+    if (i == 0) { output += $"{f[i]}"; }
+    if (i != 1 && i != 0 && f[i] != 0) { output += $"{f[i]}x{pows[i]}"; }
+    if (f[i] != 0 && i < f.Length - 1) output += " + ";
+  }
+
+  return output;
+}
+
+
+//          0  1  2  3  4  5  6  7  ......... N
+
+int[] f = { 1, 0, 0, 0, 9, 6 };
+//          1* x^0 + 2*x^1 + 0*x^2 + 4*x^3 + 5*x^4 + 6*x^5
+// 
+
+int[] g = { 0, 1, 2, 5, 0, 0, 7, 3 };
+Console.WriteLine(Print(f));
+Console.WriteLine(Print(g));
+int[] s = Sum(f, g);
+Console.WriteLine(Print(s));
+//f(x) = a0*x^0 + a1*x^1 + a2*x^2 + a3*x^3 + a4*x^4 + ....+ aN*x^N
+
+
 
 System.Console.WriteLine();
