@@ -25,7 +25,8 @@ void PrintTriangle(int[,] triangle)
   {
     for (int j = 0; j < row; j++)
     {
-      if (triangle[i, j] != 0) Console.Write($"{triangle[i, j],4}");
+      if (triangle[i, j] != 0)
+        Console.Write($"{triangle[i, j],4}");
     }
     Console.WriteLine();
   }
@@ -41,13 +42,15 @@ int[] GetKoeff(int[,] tr, int pow)
   return row;
 }
 
-int[,] tr = CreateTriangle(7);
+int[,] tr = CreateTriangle(10);
 PrintTriangle(tr);
-int[] koeff = GetKoeff(tr, 5);
+int[] koeff = GetKoeff(tr, 2);
 
 System.Console.WriteLine(String.Join(' ', koeff));
 
+System.Console.WriteLine(koeff.Length);
+
 for (int i = 0; i < koeff.Length; i++)
 {
-  Console.Write($"{koeff[i]}*a^{koeff.Length - i}*b^{i} + ");
+  Console.Write($"{koeff[i]}*a^{koeff.Length - 1 - i}*b^{i} + ");
 }
